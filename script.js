@@ -1,59 +1,66 @@
-const pokemonName = document.querySelector('.pokemon__name');
-const pokemonNumber = document.querySelector('.pokemon__number');
-const pokemonImage = document.querySelector('.pokemon__image');
-
-const form = document.querySelector('.form');
-const input = document.querySelector('.input__search');
-const buttonPrev = document.querySelector('.btn-prev');
-const buttonNext = document.querySelector('.btn-next');
-
-let searchPokemon = 1;
-
-const fetchPokemon = async (pokemon) => {
-  const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-
-  if (APIResponse.status === 200) {
-    const data = await APIResponse.json();
-    return data;
-  }
+function limpa_formulário_cep() {
+ 
+  document.getElementById('rua').value=("");
+  document.getElementById('bairro').value=("");
+  document.getElementById('cidade').value=("");
+  document.getElementById('uf').value=("");
+  document.getElementById('ibge').value=("");
 }
 
-const renderPokemon = async (pokemon) => {
-
-  pokemonName.innerHTML = 'Loading...';
-  pokemonNumber.innerHTML = '';
-
-  const data = await fetchPokemon(pokemon);
-
-  if (data) {
-    pokemonImage.style.display = 'block';
-    pokemonName.innerHTML = data.name;
-    pokemonNumber.innerHTML = data.id;
-    pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
-    input.value = '';
-    searchPokemon = data.id;
-  } else {
-    pokemonImage.style.display = 'none';
-    pokemonName.innerHTML = 'Not found :c';
-    pokemonNumber.innerHTML = '';
-  }
+function meu_callback(conteudo) {
+if (!("erro" in conteudo)) {
+ 
+  document.getElementById('rua').value=(conteudo.logradouro);
+  document.getElementById('bairro').value=(conteudo.bairro);
+  document.getElementById('cidade').value=(conteudo.localidade);
+  document.getElementById('uf').value=(conteudo.uf);
+  document.getElementById('ibge').value=(conteudo.ibge);
+} 
+else {
+  
+  limpa_formulário_cep();
+  alert("CEP não encontrado.");
+}
 }
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  renderPokemon(input.value.toLowerCase());
-});
+function pesquisacep(valor) {
 
-buttonPrev.addEventListener('click', () => {
-  if (searchPokemon > 1) {
-    searchPokemon -= 1;
-    renderPokemon(searchPokemon);
+
+var cep = valor.replace(/\D/g, '');
+
+
+if (cep != "") {
+
+  
+  var validacep = /^[0-9]{8}$/;
+
+  if(validacep.test(cep)) {
+
+     
+      document.getElementById('rua').value="...";
+      document.getElementById('bairro').value="...";
+      document.getElementById('cidade').value="...";
+      document.getElementById('uf').value="...";
+      document.getElementById('ibge').value="...";
+
+     
+      var script = document.createElement('script');
+
+      
+      script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+      
+      document.body.appendChild(script);
+
+  } 
+  else {
+      
+      limpa_formulário_cep();
+      alert("Formato de CEP inválido.");
   }
-});
-
-buttonNext.addEventListener('click', () => {
-  searchPokemon += 1;
-  renderPokemon(searchPokemon);
-});
-
-renderPokemon(searchPokemon);
+} 
+else {
+  
+  limpa_formulário_cep();
+}
+};

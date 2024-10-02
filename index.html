@@ -1,44 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html></html>
 
-  <!-- Links -->
-  <link rel="icon" href="img/favicon-16x16.png">
-  <link rel="stylesheet" href="./css/style.css">
+    <head>
+        <title>ViaCEP Webservice</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-  <!-- Main JS -->
-  <script defer src="./js/script.js"></script>
+    <body>
+        <!-- Inicio do formulario -->
+        <h1><a href="https://viacep.com.br/">ViaCep</a></h1>
+        <form method="get" action="." id="formEndereco">
+            <div class="linha">
+                <label>Cep:</label>
+                <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+                    onblur="pesquisacep(this.value);" />
+            </div>
 
-  <title>Pokédex</title>
-</head>
-<body>
-  
-  <main>
-    <img src="#" alt="pokemon" class="pokemon__image">
+            <div class="linha">
+                <label>Rua:</label>
+                <input name="rua" type="text" id="rua" size="60" />
+            </div>
+            <div class="linha">
+                <label>Bairro:</label>
+                <input name="bairro" type="text" id="bairro" size="40" />
+            </div>
+            <div class="linha">
+                <label class="label_1">Cidade:</label>
+                <input name="cidade" type="text" id="cidade" size="40" />
+            </div>
+            <div class="linha">
+                <label>Estado:</label>
+                <input name="uf" type="text" id="uf" size="2" />
+            </div>
+            <div class="linha">
+                <label>IBGE:</label>
+                <input name="ibge" type="text" id="ibge" size="8" />
+            </div>
+        </form>
+        <script src="script.js"></script>
+    </body>
 
-    <h1 class="pokemon__data">
-      <span class="pokemon__number"></span> -
-      <span class="pokemon__name"></span>
-    </h1>
-
-    <form class="form">
-      <input
-        type="search"
-        class="input__search"
-        placeholder="Name or Number"
-        required
-      />
-    </form>
-
-    <div class="buttons">
-      <button class="button btn-prev">Prev &lt;</button>
-      <button class="button btn-next">Next &gt;</button>
-    </div>
-
-    <img src="img/pokedex.png" alt="pokedex" class="pokedex">
-  </main>
-
-</body>
 </html>
