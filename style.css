@@ -35,15 +35,11 @@ input[type="text"] {
  padding: 5px;
 }
 
-
-/* Quando já clicamos no link anteriormente */
 a:visited {
-  color: #2afa00; /*Mudamos a cor para Laranja*/
+  color: #2afa00; 
 }
 
-
-/* Quando clicamos no link */
 a:active {
-  color: #27cc4d; /*Mudamos a cor para Verde*/
+  color: #27cc4d; 
 }
 
